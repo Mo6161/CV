@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 <title>Muhammet Aydogan — IT-Projektmanager & Consultant</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -475,6 +476,73 @@
     .wrapper { padding: 0 20px; }
     header { padding: 60px 0 50px; }
   }
+  .hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  }
+
+.hero-text {
+  flex: 1;
+  }
+
+.hero-image img {
+  width: 260px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: 0 0 40px rgba(0,212,255,0.25);
+  transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.03);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-date {
+    text-align: left;
+    margin-bottom: 6px;
+  }
+
+  .timeline-item::before {
+    display: none;
+  }
+
+  .timeline-content {
+    padding-left: 0;
+  }
+
+  .timeline-content::before {
+    display: none;
+  }
+
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wrapper {
+    padding: 0 20px;
+  }
+
+  header {
+    padding: 60px 0 50px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image img {
+    width: 200px;
+  }
+}
 </style>
 </head>
 <body>
@@ -485,15 +553,19 @@
 <div class="wrapper">
 
   <!-- HEADER -->
-  <header>
-    <div class="header-tag">Portfolio &amp; CV — 2026</div>
+  <header class="hero">
+  <div class="hero-text">
+    <div class="header-tag">Portfolio & CV — 2026</div>
+
     <h1>
       Muhammet
       <span class="last-name">Aydogan</span>
     </h1>
+
     <p class="header-subtitle">
       IT-Projektmanager<span>·</span>Consultant<span>·</span>Business Analyst
     </p>
+
     <div class="contact-row">
       <a class="contact-item" href="tel:017632255288">
         <span class="dot"></span>0176 / 32255288
@@ -505,7 +577,12 @@
         <span class="dot"></span>Plettenberg, NRW
       </span>
     </div>
-  </header>
+  </div>
+
+  <div class="hero-image">
+    <img src="deinbild.png" alt="Muhammet Aydogan">
+  </div>
+</header>
 
   <!-- EDUCATION -->
   <section class="reveal">
