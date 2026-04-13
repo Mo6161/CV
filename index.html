@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
+<meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 <title>Muhammet Aydogan — IT-Projektmanager & Consultant</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -31,9 +31,10 @@
     font-size: 14px;
     line-height: 1.7;
     overflow-x: hidden;
+    min-height: 100vh;
   }
 
-  /* --- Grid overlay background --- */
+  /* Grid overlay */
   body::before {
     content: '';
     position: fixed;
@@ -46,7 +47,7 @@
     z-index: 0;
   }
 
-  /* --- Ambient glow blobs --- */
+  /* Ambient blobs */
   .blob {
     position: fixed;
     border-radius: 50%;
@@ -58,20 +59,28 @@
   .blob-1 { width: 600px; height: 600px; background: var(--accent2); top: -200px; left: -200px; }
   .blob-2 { width: 400px; height: 400px; background: var(--accent3); bottom: 100px; right: -150px; }
 
-  /* --- Layout --- */
+  /* Layout wrapper */
   .wrapper {
     position: relative;
     z-index: 1;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 0 40px;
   }
 
-  /* --- Header / Hero --- */
+  /* HEADER / HERO */
   header {
-    position: relative;
-    padding: 100px 0 80px;
+    padding: 80px 0 70px;
     border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
   }
 
   .header-tag {
@@ -84,14 +93,14 @@
     border: 1px solid rgba(0,212,255,0.2);
     padding: 4px 14px;
     border-radius: 2px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     animation: fadeUp 0.6s ease both;
   }
 
   h1 {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.6rem, 6vw, 5.5rem);
     line-height: 1.0;
     letter-spacing: -0.02em;
     animation: fadeUp 0.6s 0.1s ease both;
@@ -106,8 +115,8 @@
   }
 
   .header-subtitle {
-    margin-top: 24px;
-    font-size: 13px;
+    margin-top: 20px;
+    font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.05em;
     animation: fadeUp 0.6s 0.2s ease both;
@@ -121,8 +130,8 @@
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 36px;
+    gap: 16px;
+    margin-top: 28px;
     animation: fadeUp 0.6s 0.3s ease both;
   }
 
@@ -135,7 +144,6 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-
   .contact-item:hover { color: var(--accent); }
 
   .contact-item .dot {
@@ -145,11 +153,33 @@
     flex-shrink: 0;
   }
 
-  /* --- Sections --- */
+  /* Profile image */
+  .hero-image {
+    flex-shrink: 0;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-image img {
+    width: 220px;
+    height: 260px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    box-shadow: 0 0 40px rgba(0,212,255,0.2);
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hero-image img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 60px rgba(0,212,255,0.35);
+  }
+
+  /* SECTIONS */
   section {
-    padding: 80px 0;
+    padding: 72px 0;
     border-bottom: 1px solid var(--line);
-    animation: fadeUp 0.6s ease both;
   }
 
   .section-label {
@@ -157,12 +187,11 @@
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 48px;
+    margin-bottom: 44px;
     display: flex;
     align-items: center;
     gap: 16px;
   }
-
   .section-label::after {
     content: '';
     flex: 1;
@@ -170,34 +199,34 @@
     background: linear-gradient(90deg, var(--line), transparent);
   }
 
-  /* --- Timeline --- */
-  .timeline { display: flex; flex-direction: column; gap: 48px; }
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; gap: 44px; }
 
   .timeline-item {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 0 32px;
+    grid-template-columns: 160px 1fr;
+    gap: 0 28px;
     position: relative;
   }
 
   .timeline-item::before {
     content: '';
     position: absolute;
-    left: 200px;
-    top: 8px;
-    bottom: -56px;
+    left: 178px;
+    top: 12px;
+    bottom: -52px;
     width: 1px;
     background: var(--line);
   }
-
   .timeline-item:last-child::before { display: none; }
 
   .timeline-date {
     font-size: 11px;
     color: var(--muted);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     padding-top: 4px;
     text-align: right;
+    line-height: 1.5;
   }
 
   .timeline-content {
@@ -220,7 +249,7 @@
   .timeline-title {
     font-family: 'Syne', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text);
     margin-bottom: 4px;
   }
@@ -228,15 +257,15 @@
   .timeline-company {
     font-size: 11px;
     color: var(--accent);
-    letter-spacing: 0.08em;
-    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
   }
 
   .timeline-bullets {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
   }
 
   .timeline-bullets li {
@@ -245,7 +274,6 @@
     padding-left: 16px;
     position: relative;
   }
-
   .timeline-bullets li::before {
     content: '›';
     position: absolute;
@@ -253,10 +281,10 @@
     color: var(--accent);
   }
 
-  /* --- Skills grid --- */
+  /* SKILLS */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     gap: 12px;
   }
 
@@ -268,7 +296,6 @@
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     cursor: default;
   }
-
   .skill-card:hover {
     border-color: rgba(0,212,255,0.3);
     box-shadow: var(--glow);
@@ -285,7 +312,7 @@
 
   .skill-level {
     font-size: 10px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
   }
@@ -306,11 +333,11 @@
     width: 0;
   }
 
-  /* --- Languages --- */
+  /* LANGUAGES */
   .lang-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 14px;
   }
 
   .lang-card {
@@ -319,10 +346,9 @@
     border-radius: 4px;
     padding: 20px 32px;
     text-align: center;
-    min-width: 140px;
+    min-width: 130px;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-
   .lang-card:hover {
     border-color: rgba(0,212,255,0.3);
     box-shadow: var(--glow);
@@ -338,12 +364,12 @@
 
   .lang-level {
     font-size: 10px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
   }
 
-  /* --- Interests --- */
+  /* INTERESTS */
   .interests-row {
     display: flex;
     flex-wrap: wrap;
@@ -361,13 +387,12 @@
     padding: 6px 16px;
     transition: color 0.2s, border-color 0.2s;
   }
-
   .interest-tag:hover {
     color: var(--accent);
     border-color: rgba(0,212,255,0.3);
   }
 
-  /* --- Education special style --- */
+  /* EDUCATION */
   .edu-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -383,12 +408,10 @@
     overflow: hidden;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-
   .edu-card:hover {
     border-color: rgba(0,212,255,0.3);
     box-shadow: var(--glow);
   }
-
   .edu-card::after {
     content: '';
     position: absolute;
@@ -423,7 +446,6 @@
     flex-wrap: wrap;
     gap: 6px;
   }
-
   .edu-focus span {
     font-size: 10px;
     letter-spacing: 0.08em;
@@ -434,7 +456,7 @@
     padding: 3px 10px;
   }
 
-  /* --- Footer --- */
+  /* FOOTER */
   footer {
     padding: 48px 0;
     text-align: center;
@@ -442,10 +464,9 @@
     color: var(--muted);
     letter-spacing: 0.1em;
   }
-
   footer span { color: var(--accent); }
 
-  /* --- Animations --- */
+  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -456,95 +477,56 @@
     transform: translateY(24px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  /* --- Scrollbar --- */
+  /* SCROLLBAR */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.2); border-radius: 2px; }
 
-  /* --- Responsive --- */
-  @media (max-width: 700px) {
-    .timeline-item { grid-template-columns: 1fr; }
-    .timeline-date { text-align: left; margin-bottom: 8px; }
-    .timeline-item::before { left: 0; }
-    .edu-grid { grid-template-columns: 1fr; }
+  /* RESPONSIVE — Tablet */
+  @media (max-width: 860px) {
+    .hero-image img { width: 180px; height: 210px; }
+    h1 { font-size: clamp(2.2rem, 7vw, 3.5rem); }
+  }
+
+  /* RESPONSIVE — Mobile */
+  @media (max-width: 640px) {
     .wrapper { padding: 0 20px; }
-    header { padding: 60px 0 50px; }
-  }
-  .hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  
-  }
 
-.hero-text {
-  flex: 1;
-  }
+    header {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      padding: 48px 0 48px;
+      gap: 28px;
+    }
 
-.hero-image img {
-  width: 260px;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  box-shadow: 0 0 40px rgba(0,212,255,0.25);
-  transition: transform 0.3s ease;
-}
+    .hero-image { align-self: center; }
+    .hero-image img { width: 150px; height: 175px; }
 
-.hero-image img:hover {
-  transform: scale(1.03);
-}
+    h1 { font-size: clamp(2.4rem, 12vw, 3.5rem); }
 
-/* Mobile */
-@media (max-width: 700px) {
-  .timeline-item {
-    grid-template-columns: 1fr;
+    .timeline-item {
+      grid-template-columns: 1fr;
+      gap: 4px 0;
+    }
+    .timeline-item::before { display: none; }
+    .timeline-date { text-align: left; padding-top: 0; }
+    .timeline-content { padding-left: 14px; }
+    .timeline-content::before { left: -4px; top: 6px; width: 7px; height: 7px; }
+
+    .edu-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    section { padding: 52px 0; }
   }
 
-  .timeline-date {
-    text-align: left;
-    margin-bottom: 6px;
+  @media (max-width: 380px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact-row { flex-direction: column; gap: 10px; }
   }
-
-  .timeline-item::before {
-    display: none;
-  }
-
-  .timeline-content {
-    padding-left: 0;
-  }
-
-  .timeline-content::before {
-    display: none;
-  }
-
-  .edu-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wrapper {
-    padding: 0 20px;
-  }
-
-  header {
-    padding: 60px 0 50px;
-  }
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    
-  }
-
-  .hero-image img {
-    width: 200px;
-  }
-}
 </style>
 </head>
 <body>
@@ -555,36 +537,32 @@
 <div class="wrapper">
 
   <!-- HEADER -->
-  <header class="hero">
-  <div class="hero-text">
-    <div class="header-tag">Portfolio & CV — 2026</div>
-
-    <h1>
-      Muhammet
-      <span class="last-name">Aydogan</span>
-    </h1>
-
-    <p class="header-subtitle">
-      IT-Projektmanager<span>·</span>Consultant<span>·</span>Business Analyst
-    </p>
-
-    <div class="contact-row">
-      <a class="contact-item" href="tel:017632255288">
-        <span class="dot"></span>0176 / 32255288
-      </a>
-      <a class="contact-item" href="mailto:m.aydogan01@outlook.de">
-        <span class="dot"></span>m.aydogan01@outlook.de
-      </a>
-      <span class="contact-item">
-        <span class="dot"></span>Plettenberg, NRW
-      </span>
+  <header>
+    <div class="hero-text">
+      <div class="header-tag">Portfolio &amp; CV — 2026</div>
+      <h1>
+        Muhammet
+        <span class="last-name">Aydogan</span>
+      </h1>
+      <p class="header-subtitle">
+        IT-Projektmanager<span>·</span>Consultant<span>·</span>Business Analyst
+      </p>
+      <div class="contact-row">
+        <a class="contact-item" href="tel:017632255288">
+          <span class="dot"></span>0176 / 32255288
+        </a>
+        <a class="contact-item" href="mailto:m.aydogan01@outlook.de">
+          <span class="dot"></span>m.aydogan01@outlook.de
+        </a>
+        <span class="contact-item">
+          <span class="dot"></span>Plettenberg, NRW
+        </span>
+      </div>
     </div>
-  </div>
-
-  <div class="hero-image">
-    <img src="deinbild.png" alt="Muhammet Aydogan">
-  </div>
-</header>
+    <div class="hero-image">
+      <img src="deinbild.png" alt="Muhammet Aydogan">
+    </div>
+  </header>
 
   <!-- EDUCATION -->
   <section class="reveal">
@@ -760,19 +738,17 @@
 </div>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        observer.unobserve(e.target);
+        revealObserver.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
+  }, { threshold: 0.06 });
+  reveals.forEach(el => revealObserver.observe(el));
 
-  // Skill bar animation
   const barObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -782,7 +758,7 @@
         barObserver.unobserve(e.target);
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.15 });
   document.querySelectorAll('.skills-grid').forEach(el => barObserver.observe(el));
 </script>
 </body>
