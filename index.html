@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammet Aydogan — IT-Projektmanager & Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c12;
+    --surface: #0d1420;
+    --surface2: #111a26;
+    --accent: #00d4ff;
+    --accent2: #0057ff;
+    --accent3: #7b2fff;
+    --text: #e8edf5;
+    --muted: #6b7a8d;
+    --line: rgba(0,212,255,0.12);
+    --glow: 0 0 30px rgba(0,212,255,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* --- Grid overlay background --- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* --- Ambient glow blobs --- */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-1 { width: 600px; height: 600px; background: var(--accent2); top: -200px; left: -200px; }
+  .blob-2 { width: 400px; height: 400px; background: var(--accent3); bottom: 100px; right: -150px; }
+
+  /* --- Layout --- */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* --- Header / Hero --- */
+  header {
+    position: relative;
+    padding: 100px 0 80px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.2);
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 .last-name {
+    display: block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-subtitle {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .header-subtitle span {
+    color: var(--accent);
+    margin: 0 8px;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 36px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item:hover { color: var(--accent); }
+
+  .contact-item .dot {
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* --- Sections --- */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--line);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+
+  /* --- Timeline --- */
+  .timeline { display: flex; flex-direction: column; gap: 48px; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0 32px;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 200px;
+    top: 8px;
+    bottom: -56px;
+    width: 1px;
+    background: var(--line);
+  }
+
+  .timeline-item:last-child::before { display: none; }
+
+  .timeline-date {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    padding-top: 4px;
+    text-align: right;
+  }
+
+  .timeline-content {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    width: 9px; height: 9px;
+    border: 1px solid var(--accent);
+    background: var(--bg);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(0,212,255,0.4);
+  }
+
+  .timeline-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .timeline-company {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .timeline-bullets li {
+    font-size: 12px;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .timeline-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* --- Skills grid --- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .skill-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    box-shadow: var(--glow);
+    transform: translateY(-2px);
+  }
+
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .skill-level {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .skill-bar {
+    margin-top: 10px;
+    height: 2px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: 1px;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 0;
+  }
+
+  /* --- Languages --- */
+  .lang-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .lang-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 32px;
+    text-align: center;
+    min-width: 140px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .lang-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    box-shadow: var(--glow);
+  }
+
+  .lang-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .lang-level {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* --- Interests --- */
+  .interests-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .interest-tag {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 6px 16px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .interest-tag:hover {
+    color: var(--accent);
+    border-color: rgba(0,212,255,0.3);
+  }
+
+  /* --- Education special style --- */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .edu-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    box-shadow: var(--glow);
+  }
+
+  .edu-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--accent), var(--accent3));
+  }
+
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .edu-school {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  .edu-date {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .edu-focus {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .edu-focus span {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    background: rgba(0,212,255,0.05);
+    border: 1px solid rgba(0,212,255,0.1);
+    border-radius: 2px;
+    padding: 3px 10px;
+  }
+
+  /* --- Footer --- */
+  footer {
+    padding: 48px 0;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* --- Animations --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- Scrollbar --- */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.2); border-radius: 2px; }
+
+  /* --- Responsive --- */
+  @media (max-width: 700px) {
+    .timeline-item { grid-template-columns: 1fr; }
+    .timeline-date { text-align: left; margin-bottom: 8px; }
+    .timeline-item::before { left: 0; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .wrapper { padding: 0 20px; }
+    header { padding: 60px 0 50px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-tag">Portfolio &amp; CV — 2026</div>
+    <h1>
+      Muhammet
+      <span class="last-name">Aydogan</span>
+    </h1>
+    <p class="header-subtitle">
+      IT-Projektmanager<span>·</span>Consultant<span>·</span>Business Analyst
+    </p>
+    <div class="contact-row">
+      <a class="contact-item" href="tel:017632255288">
+        <span class="dot"></span>0176 / 32255288
+      </a>
+      <a class="contact-item" href="mailto:m.aydogan01@outlook.de">
+        <span class="dot"></span>m.aydogan01@outlook.de
+      </a>
+      <span class="contact-item">
+        <span class="dot"></span>Plettenberg, NRW
+      </span>
+    </div>
+  </header>
+
+  <!-- EDUCATION -->
+  <section class="reveal">
+    <div class="section-label">Akademischer Werdegang</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">M.Sc. Wirtschaftsinformatik</div>
+        <div class="edu-school">FernUniversität in Hagen</div>
+        <div class="edu-date">Ab März 2026</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">B.Sc. Betriebswirtschaftslehre</div>
+        <div class="edu-school">Fachhochschule Aachen</div>
+        <div class="edu-date">03/2020 — 09/2023</div>
+        <div class="edu-focus">
+          <span>Wirtschaftsinformatik</span>
+          <span>Finanzwirtschaft / Controlling</span>
+          <span>Wirtschaftsrecht</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="reveal">
+    <div class="section-label">Beruflicher Werdegang</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">seit 08/2024</div>
+        <div class="timeline-content">
+          <div class="timeline-title">IT-Projektmanager & Consultant</div>
+          <div class="timeline-company">Smartbrix GmbH · Olpe · Property Management</div>
+          <ul class="timeline-bullets">
+            <li>Workshops &amp; Schulungen zur Einführung neuer Prozesse und Systeme</li>
+            <li>Analyse bestehender Geschäftsprozesse &amp; Beratung zu Optimierungspotenzialen</li>
+            <li>Entwicklung von Konzepten zur Optimierung von Prozessen und Systemlandschaften</li>
+            <li>Datenmanagement: Extraktion, Transformation &amp; Organisation von Stammdaten</li>
+            <li>Sicherstellung der Datenqualität durch Bereinigung und Konsolidierung großer ERP-Datenbestände</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">04/2024 — 08/2025</div>
+        <div class="timeline-content">
+          <div class="timeline-title">IT-Projektmanager</div>
+          <div class="timeline-company">DATASEC information factory GmbH · Siegen · Property Management</div>
+          <ul class="timeline-bullets">
+            <li>Planung, Steuerung und Überwachung von IT-Projekten für diverse Kunden</li>
+            <li>Verantwortung für das Projektmanagement von der Initiierung bis zum Abschluss</li>
+            <li>Ressourcenmanagement, Zeitplanung und Budgetkontrolle</li>
+            <li>Kundenberatungen zur Ermittlung von Geschäftsanforderungen</li>
+            <li>Erstellung von Lösungskonzepten &amp; Spezifikationen in Abstimmung mit den Kunden</li>
+            <li>Einführung von Best Practices und Verbesserung der Projektmanagement-Methoden</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">11/2022 — 08/2023</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Studentischer Mitarbeiter – Business Development</div>
+          <div class="timeline-company">Vossloh Fastening Systems GmbH · Werdohl</div>
+          <ul class="timeline-bullets">
+            <li>Erstellung von Budgetplänen und Durchführung von Forecastanalysen</li>
+            <li>Management eines SAP-Projekts zur Verbesserung von Controlling-Prozessen</li>
+            <li>Kosten- und Umsatzkontrollen sowie Soll-Ist-Analysen</li>
+            <li>Schnittstellenberatung zu Unternehmenskennzahlen</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">05/2020 — 09/2022</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Studentischer Mitarbeiter – Data Analyst</div>
+          <div class="timeline-company">Telus International · Aachen</div>
+          <ul class="timeline-bullets">
+            <li>Überwachung und Sicherstellung der Einhaltung von KPIs</li>
+            <li>Umfangreiche Analysen zur Identifizierung von Trends, Chancen und Risiken</li>
+            <li>Erstellung detaillierter Reportings basierend auf den KPIs</li>
+            <li>Datengetriebene Konzepte für die Implementierung von Geschäftsprozessen</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="reveal">
+    <div class="section-label">Kenntnisse</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-name">Microsoft Office</div>
+        <div class="skill-level">Fortgeschritten</div>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Power BI</div>
+        <div class="skill-level">Erweitert</div>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Python</div>
+        <div class="skill-level">Erweitert · Data Science Stack</div>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Microsoft Dynamics</div>
+        <div class="skill-level">Grundkenntnisse</div>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="40"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">SQL</div>
+        <div class="skill-level">Grundkenntnisse</div>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="40"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">SAP FI</div>
+        <div class="skill-level">Grundkenntnisse</div>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="40"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">CRM-Systeme</div>
+        <div class="skill-level">Praktische Erfahrung</div>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="55"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Pandas / Numpy</div>
+        <div class="skill-level">Erweitert</div>
+        <div class="skill-bar"><div class="skill-bar-fill" data-width="70"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="reveal">
+    <div class="section-label">Sprachen</div>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-name">Deutsch</div>
+        <div class="lang-level">Muttersprache</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Türkisch</div>
+        <div class="lang-level">Muttersprache</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Englisch</div>
+        <div class="lang-level">Verhandlungssicher</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section class="reveal">
+    <div class="section-label">Persönliche Interessen</div>
+    <div class="interests-row">
+      <span class="interest-tag">Geschichte</span>
+      <span class="interest-tag">Ernährung</span>
+      <span class="interest-tag">Sport</span>
+      <span class="interest-tag">Python &amp; Data Science</span>
+      <span class="interest-tag">Data Analytics</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>Muhammet Aydogan</span> — m.aydogan01@outlook.de — 2026
+  </footer>
+
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Skill bar animation
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        barObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.skills-grid').forEach(el => barObserver.observe(el));
+</script>
+</body>
+</html>
